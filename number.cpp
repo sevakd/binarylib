@@ -18,8 +18,10 @@ class binary {
 public:
   binary (){}; //constructor
   binary operator+ (binary);
+  binary& operator+=(binary);
   friend ostream& operator<< (ostream&, binary);
   friend istream& operator>> (istream&, binary&);
+  int decimal();
 };
 
 //output a binary number
@@ -44,6 +46,17 @@ istream& operator>> (istream& ci, binary& b) {
   }
   //cout << b.bin[0] << endl; 
   return ci;
+}
+
+//convert to decimal
+int binary :: decimal() {
+  
+  int total = 0;
+  vector <int>::iterator itr;
+  for (itr = bin.begin(); itr != bin.end(); ++itr){
+    total = total * 2 + *itr;
+  }
+  return total;
 }
 
 // add binary + binary
@@ -80,15 +93,15 @@ binary binary :: operator+ (binary roper) {
     decSum = decSum / 2;
   }
 
-  /*//reverse binSum
-  for (i=0; i<binSum.bin.size(); i++) {
-    int temp;
-    temp = binSum.bin[binSum.bin.size()-1 + i];
-    binSum.bin[i] = temp;
-  }*/
-
   return binSum;
 }
+
+binary& binary :: operator+= (binary roper) {
+  
+  *this = roper + *this;
+
+  return *this;
+} 
 
 int main() {
 
@@ -101,6 +114,12 @@ int main() {
   cout << one << ' ' << two << endl;
   one = one + two;
   cout << "Sum is: " << one << endl;
+  cout << one << "is equivalent to " << one.decimal() << endl;
+
+  three = one;
+  cout << "The value of 'three' is: " << three << endl;
+  three += two;
+  cout << "The value of 'three' is now: " << three << endl;
   
   return 0;
 }
