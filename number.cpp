@@ -8,21 +8,8 @@
  * Output: dependent on driver prog
  */
 
-#include <iostream>
-#include <vector>
-#include <string>
+#include "number.h"
 using namespace std;
-
-class binary {
-  vector <int> bin;
-public:
-  binary (){}; //constructor
-  binary operator+ (binary);
-  binary& operator+=(binary);
-  friend ostream& operator<< (ostream&, binary);
-  friend istream& operator>> (istream&, binary&);
-  int decimal();
-};
 
 //output a binary number
 ostream& operator<< (ostream& co, binary b) {
@@ -102,24 +89,3 @@ binary& binary :: operator+= (binary roper) {
 
   return *this;
 } 
-
-int main() {
-
-  binary one, two;
-  binary three;
-
-  cout << "Type in two binary numbers to add: ";
-  cin >> one;
-  cin >> two;
-  cout << one << ' ' << two << endl;
-  one = one + two;
-  cout << "Sum is: " << one << endl;
-  cout << one << "is equivalent to " << one.decimal() << endl;
-
-  three = one;
-  cout << "The value of 'three' is: " << three << endl;
-  three += two;
-  cout << "The value of 'three' is now: " << three << endl;
-  
-  return 0;
-}
