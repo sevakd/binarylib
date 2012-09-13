@@ -14,9 +14,9 @@
 using namespace std;
 
 class binary {
-  vector <char> bin;
+  vector <int> bin;
 public:
-  binary (){};
+  binary (){}; //constructor
   binary operator+ (binary);
   friend ostream& operator<< (ostream&, binary);
   friend istream& operator>> (istream&, binary&);
@@ -25,7 +25,7 @@ public:
 //output a binary number
 ostream& operator<< (ostream& co, binary b) {
 
-  vector <char>::iterator itr;
+  vector <int>::iterator itr;
   for (itr = b.bin.begin(); itr != b.bin.end(); ++itr){
     co << *itr;
   }
@@ -40,17 +40,26 @@ istream& operator>> (istream& ci, binary& b) {
   ci >> input; 
   
   for (int i = 0; i<input.length(); i++) {
-    b.bin.insert(b.bin.begin() + i, input[i]);
+    b.bin.insert(b.bin.begin() + i, input[i] - '0');
   }
-  
+  //cout << b.bin[0] << endl; 
   return ci;
 }
 
 /*// add binary + binary
 binary binary :: operator+ (binary roper) {
 
+  int decLeftOper;
+  int decRightOper;
   binary sum;
-
+  
+  //convert left oper to decimal
+  int total = 0;
+  vector <int>::iterator itr;
+  for (itr = bin.begin(); itr != bin.end(); ++itr){
+    total += total * 2 + *itr;
+  }
+  cout << total << endl;
   return sum;
 }*/
 
