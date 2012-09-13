@@ -46,22 +46,30 @@ istream& operator>> (istream& ci, binary& b) {
   return ci;
 }
 
-/*// add binary + binary
+// add binary + binary
 binary binary :: operator+ (binary roper) {
 
   int decLeftOper;
   int decRightOper;
   binary sum;
-  
+
   //convert left oper to decimal
-  int total = 0;
+  int ltotal = 0;
   vector <int>::iterator itr;
   for (itr = bin.begin(); itr != bin.end(); ++itr){
-    total += total * 2 + *itr;
+    ltotal = ltotal * 2 + *itr;
   }
-  cout << total << endl;
+  decLeftOper = ltotal;
+ 
+  //convert right oper to decimal
+  int rtotal = 0;
+  vector <int>::iterator itr2;
+  for (itr2 = roper.bin.begin(); itr2 != roper.bin.end(); ++itr2){
+    rtotal = rtotal * 2 + *itr2;
+  }
+  decRightOper = rtotal;
   return sum;
-}*/
+}
 
 int main() {
 
@@ -72,7 +80,7 @@ int main() {
   cin >> one;
   cin >> two;
   cout << one << ' ' << two << endl;
-  //one = one + two;
+  one = one + two;
   //cout << "Sum is: " << one << endl;
   
   return 0;
