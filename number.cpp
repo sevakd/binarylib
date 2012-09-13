@@ -51,7 +51,8 @@ binary binary :: operator+ (binary roper) {
 
   int decLeftOper;
   int decRightOper;
-  binary sum;
+  int decSum;
+  binary binSum;
 
   //convert left oper to decimal
   int ltotal = 0;
@@ -68,7 +69,25 @@ binary binary :: operator+ (binary roper) {
     rtotal = rtotal * 2 + *itr2;
   }
   decRightOper = rtotal;
-  return sum;
+  
+  //add decimal values
+  decSum = decLeftOper + decRightOper;
+
+  //convert to binary
+  int i = 0;
+  while (decSum != 0) {
+    binSum.bin.insert(binSum.bin.begin() + i, decSum%2);
+    decSum = decSum / 2;
+  }
+
+  /*//reverse binSum
+  for (i=0; i<binSum.bin.size(); i++) {
+    int temp;
+    temp = binSum.bin[binSum.bin.size()-1 + i];
+    binSum.bin[i] = temp;
+  }*/
+
+  return binSum;
 }
 
 int main() {
@@ -81,7 +100,7 @@ int main() {
   cin >> two;
   cout << one << ' ' << two << endl;
   one = one + two;
-  //cout << "Sum is: " << one << endl;
+  cout << "Sum is: " << one << endl;
   
   return 0;
 }
