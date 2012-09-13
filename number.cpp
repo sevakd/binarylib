@@ -9,10 +9,12 @@
  */
 
 #include <iostream>
+#include <vector>
+#include <string>
 using namespace std;
 
 class binary {
-  char bin [20];
+  vector <char> bin;
 public:
   binary (){};
   binary operator+ (binary);
@@ -23,14 +25,24 @@ public:
 //output a binary number
 ostream& operator<< (ostream& co, binary b) {
 
-  co << b.bin;
+  vector <char>::iterator itr;
+  for (itr = b.bin.begin(); itr != b.bin.end(); ++itr){
+    co << *itr;
+  }
+  //co << b.bin;
   return co;
 }
 
 //input a binary number
 istream& operator>> (istream& ci, binary& b) {
   
-  ci >> b.bin;
+  string input;
+  ci >> input; 
+  
+  for (int i = 0; i<input.length(); i++) {
+    b.bin.insert(b.bin.begin() + i, input[i]);
+  }
+  
   return ci;
 }
 
