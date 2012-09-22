@@ -20,12 +20,12 @@ using namespace std;
 
 //class
 class binary {
-  vector <int> bin; //each digit of intput being a seperate element
+  vector <int> bin; //each digit of input being a seperate element
 public:
-  binary (){}; //constructor
-  binary (vector <int> thebin = bin) //copy constructor
+  binary (){bin.assign(1,0);}; //default constructor (set value to 0)
+  binary (vector <int> thebin) //copy constructor
          {bin = thebin;};
-  binary operator+ (binary); //addtion overload
+  binary operator+ (binary); //addition overload
     /*pre: binary left and binary right operands
       post: returns new binary sum*/
   binary& operator+=(binary); //plus equals overload
