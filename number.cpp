@@ -1,18 +1,8 @@
-/* Sevak Deirmendjian
- * 9/9/12
- * Deirmendjian_driver.cpp
- *
- * Program that enables certain operation on binary values (add, convert from base 10)
- *  
- * Input: none (placeholder driver prog for testing)
- * Output: dependent on driver prog
- */
-
 #include "number.h"
 using namespace std;
 
 //output a binary number
-ostream& operator<< (ostream& co, binary b) {
+ostream& operator<< (ostream& co, binary b) { //ostream reference and binary object
 
   vector <int>::iterator itr; //iterate through vector 
   for (itr = b.bin.begin(); itr != b.bin.end(); ++itr){
@@ -23,10 +13,10 @@ ostream& operator<< (ostream& co, binary b) {
 }
 
 //input a binary number
-istream& operator>> (istream& ci, binary& b) {
+istream& operator>> (istream& ci, binary& b) { //istream reference and binary reference
   
   string input; //user input
-  ci >> input; 
+  ci >> input; //receive string
   
   for (int i = 0; i<input.length(); i++) { //iterate through input string
     b.bin.insert(b.bin.begin() + i, input[i] - '0'); //pass iter loc and string element val to vector element
@@ -54,28 +44,18 @@ binary binary :: operator+ (binary roper) {
   int decSum; //sum as decimal
   binary binSum;
 
-  //convert left oper to decimal *REPLACE WITH FUNCT CALL*
-  int ltotal = 0;
-  vector <int>::iterator itr;
-  for (itr = bin.begin(); itr != bin.end(); ++itr){
-    ltotal = ltotal * 2 + *itr;
-  }
-  decLeftOper = ltotal;
+  //convert left oper to decimal
+  decLeftOper = decimal();
  
-  //convert right oper to decimal *REPLACE WITH FUNCT CALL*
-  int rtotal = 0;
-  vector <int>::iterator itr2;
-  for (itr2 = roper.bin.begin(); itr2 != roper.bin.end(); ++itr2){
-    rtotal = rtotal * 2 + *itr2;
-  }
-  decRightOper = rtotal;
+  //convert right oper to decimal
+  decRightOper = roper.decimal();
   
   //add decimal values
   decSum = decLeftOper + decRightOper;
 
   //convert to binary
-  int i = 0;
-  while (decSum != 0) {
+  int i = 0; //vector index
+  while (decSum != 0) { //divide until 0
     binSum.bin.insert(binSum.bin.begin() + i, decSum%2); //store remainder in vector
     decSum = decSum / 2; //halve sum
   }
@@ -83,9 +63,10 @@ binary binary :: operator+ (binary roper) {
   return binSum; //binary
 }
 
+//add right oper to left and assign to left
 binary& binary :: operator+= (binary roper) {
   
-  *this = roper + *this; //binary add right to left operand, set as left 
+  *this = roper + *this; //binary addition 
 
-  return *this;
+  return *this; //dereference and return
 } 
