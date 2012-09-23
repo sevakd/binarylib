@@ -12,8 +12,8 @@
  */
 
 #include <iostream>
+#include <math.h>
 #include <vector>
-#include <iostream>
 
 using namespace std;
 
@@ -32,8 +32,8 @@ protected:
 };
 
 class binary : public number {
-protected:
-  void native(int forSum);
+private:
+  void native(int dec);
 public:
   binary operator+ (binary); //addition overload
   binary& operator+=(binary); //addition assignment overload
@@ -41,4 +41,24 @@ public:
   int decimal();
 };
 
+class hexadecimal : public number {
+private:
+  void native(int dec);
+public:
+  hexadecimal operator+ (hexadecimal); //addition overload
+  hexadecimal& operator+=(hexadecimal); //addition assignment overload
+  hexadecimal(){};
+  int decimal();
+};
+
+
+class octal : public number {
+private:
+  void native(int dec);
+public:
+  octal operator+ (octal); //addition overload
+  octal& operator+=(octal); //addition assignment overload
+  octal(){};
+  int decimal();
+};
 #endif // __BINARY_H_INCLUDED__
