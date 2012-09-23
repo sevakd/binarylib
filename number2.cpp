@@ -1,34 +1,5 @@
-#include <iostream>
-#include <vector>
-#include <iostream>
+#include "number2.h"
 
-using namespace std;
-
-class number {
-protected:
-  
-  vector <int> val;
-
-  number(){val.assign(1,0);}; //default constructor
-  number(vector <int> theval) //copy constructor
-        {val = theval;};
-  friend ostream& operator<< (ostream&, number); //output overload 
-  friend istream& operator>> (istream&, number&); //input overload
-  int decimal();
-  number native(int forSum){};
-};
-
-class binary : public number {
-protected:
-  void native(int forSum);
-public:
-  binary operator+ (binary); //addition overload
-  binary& operator+=(binary); //addition assignment overload
-  binary(){};
-  int decimal();
-};
-
-//----------------------------------number class impl---------
 //output a number
 ostream& operator<< (ostream& co, number n) {
   
@@ -103,16 +74,4 @@ void binary :: native(int forSum){
     val.insert(val.begin(), forSum%2); //store remainder in vector
     forSum = forSum / 2; //halve sum
   }
-}
-
-int main(){
-  binary one, two, three;
-  int val;
-  cout << "enter two binary numbers: ";
-  cin >> one;
-  cin >> two;
-  three = one+two;
-  cout << "Sum is " << three << endl;
-  
-  return 0;
 }
