@@ -1,7 +1,7 @@
 #include "number2.h"
 
 int main(){
-  octal meow, moo, s;
+  hexadecimal meow, moo, s;
   cin >> meow;
   cin >> moo;
   meow += moo;
